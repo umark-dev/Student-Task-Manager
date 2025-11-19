@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Task Manager — Vertex Institute</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="title">Student Task Manager</h1>
+      <p class="subtitle">Track tasks, validate inputs, and persist data with localStorage</p>
+    </div>
+  </header>
+
+  <main class="container main-grid" id="main">
+    <!-- Form Column -->
+    <section class="card form-card" aria-labelledby="form-title">
+      <h2 id="form-title">Add / Edit Task</h2>
+      <form id="task-form" novalidate>
+        <div class="form-row">
+          <label for="task-title">Task Title <span class="required">*</span></label>
+          <input id="task-title" name="title" type="text" placeholder="e.g. Prepare lab report" required minlength="3" />
+          <div class="input-meta">
+            <small id="title-error" class="error" aria-live="polite"></small>
+            <small id="title-count" class="muted">0 characters</small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="task-desc">Description</label>
+          <textarea id="task-desc" name="description" rows="4" placeholder="Optional details..."></textarea>
+        </div>
+
+        <div class="form-row split">
+          <div>
+            <label for="task-due">Due Date</label>
+            <input id="task-due" name="due" type="date" />
+          </div>
+          <div>
+            <label for="task-priority">Priority</label>
+            <select id="task-priority" name="priority" >
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions">
+         <!-- Edit button -->
+<button class="action-btn action-edit" type="button" title="Edit task">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708L4.207 15H1v-3.207L12.146.146zM11.207 2L2 11.207V13h1.793L13 3.793 11.207 2z"/>
+  </svg>
+  Edit
+</button>
+
+<!-- Delete button -->
+<button class="action-btn action-delete" type="button" title="Delete task">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5v-7zM14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2h13v1zM2.118 3 2 3.059V4h12V3.059L13.882 3H2.118z"/>
+  </svg>
+  Delete
+</button>
+<button id="btn-clear-all" class="btn danger">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M6 2.5v-1h4v1H6zm3.5 1a.5.5 0 0 1 .5.5V13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4a.5.5 0 0 1 .5-.5h6zM7 5a.5.5 0 0 1 .5.5V12a.5.5 0 0 1-1 0V5.5A.5.5 0 0 1 7 5zm2 0a.5.5 0 0 1 .5.5V12a.5.5 0 0 1-1 0V5.5A.5.5 0 0 1 9 5z"/>
+  </svg>
+  Clear All
+</button>
+
+ <button type="submit" id="btn-submit" class="btn primary">Save Task</button>
+          <button type="button" id="btn-reset" class="btn">Reset</button>
+        </div>
+      </form>
+
+      <footer class="small-footer">
+        <small>Tip: Title must be unique &gt;= 3 characters to save.</small>
+      </footer>
+    </section>
+
+    <!-- Tasks Column -->
+    <section class="card tasks-card" aria-labelledby="tasks-title">
+      <div class="tasks-header">
+        <h2 id="tasks-title">Tasks</h2>
+        <div class="controls">
+          <input id="search" type="search" placeholder="Search tasks..." aria-label="Search tasks" />
+          <button id="btn-clear-all" class="btn danger">Clear All</button>
+        </div>
+      </div>
+
+      <section id="empty-state" class="empty" hidden>
+        <p>No tasks yet. Add your first task from the left.</p>
+      </section>
+
+      <ul id="task-list" class="task-list" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <small>Vertex Institute of Technology &amp; Skills — Front-End Integration Project</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
